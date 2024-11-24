@@ -250,24 +250,17 @@ class TopologyOptimizer:
         return xnew
 
 if __name__ == "__main__":
-    # Create 60x60 square
+    # Create 100x100 square
     nelx, nely = 100,100
     opt = TopologyOptimizer(nelx=100, nely=100, volfrac=0.3, penal=3.0, rmin=1.5, ft=0)
-    
-    # --- HOW TO ADD MULTIPLE SUPPORTS ---
-    # You can call set_fixed_support() as many times as you like.
-    
-    # 1. Fix the entire bottom edge (Your request)
-    # x goes from 0 to 60, y is fixed at 0
+   
+    # x goes from 0 to nelx, y is fixed at 0 (basically, x axis is constrained as fixed)
     opt.set_fixed_support(x_min=0, x_max=nelx, y_min=0, y_max=0)
     
     # Example of adding a SECOND support (e.g., pinning the top-left corner)
-    # opt.set_fixed_support(x_min=0, x_max=0, y_min=60, y_max=60) 
-
-    # --- HOW TO ADD MULTIPLE LOADS ---
-    # You can call set_load() as many times as you like. Forces at the same node will add up.
+    # opt.set_fixed_support(x_min=0, x_max=0, y_min=60, y_max=60)   
     
-    # 1. Main Load: Downward force at Top-Middle (Your request)
+    # 1. Main Load: Downward force at Top-Middle
     opt.set_load(x=0, y=100, fx=2.0, fy=-1.0)
     
     # 2. Secondary Load: Side push at the Top-Right (Demonstration)
