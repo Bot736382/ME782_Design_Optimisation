@@ -1,1 +1,3 @@
-# ME782_Design_Optimisation
+# Topology Optimisation for Making Lightweight 2D Structure
+## Problem Statement
+This project will use topology optimisation to identify and remove redundant material from a 2D rectangular structure, significantly reducing its weight while maintaining structural integrity under various loads. The concept is analogous to designing a bicycle frame; instead of using a solid block of metal, material is placed only where it is needed to effectively distribute loads and enhance strength. Our approach will determine which regions within the rectangle can be eliminated without compromising its ability to withstand applied forces, leading to a highly efficient and lightweight design
