@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1763221541.2529 "c:/Users/ASUS/Desktop/IITB/Projects/ME782_Design_Optimisation/Latex/main.tex" "main.pdf" "main" 1763221543.39697 0
+["pdflatex"] 1763234965.22527 "c:/Users/ASUS/Desktop/IITB/Projects/ME782_Design_Optimisation/Latex/main.tex" "main.pdf" "main" 1763234967.36768 0
   "C:/Users/ASUS/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1763134005 80909 eab91d9745dd2edfd62a31d53cd5fe15 ""
   "C:/Users/ASUS/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/ecbx1200.pk" 1763132770 31952 2710b204ccc9b91cf7948a0a8991f330 ""
   "C:/Users/ASUS/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/ecbx1728.pk" 1763132771 49100 750b2cb935474353d65098cec47c3e67 ""
@@ -42,6 +42,7 @@
   "C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb" 1247596667 36741 0ee9e374ec3e30da87cdfb0ea3575226 ""
   "C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb" 1247596666 35469 dcf3a5f2fc1862f5952e3ee5eb1d98c4 ""
   "C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb" 1247596667 32722 d7379af29a190c3f453aba36302ff5a9 ""
+  "C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1247596667 32569 5e5ddc8df908dea60932f3c484a54c0d ""
   "C:/Users/ASUS/AppData/Local/Programs/MiKTeX/tex/context/base/mkii/supp-pdf.mkii" 1580390158 71627 94eb9990bed73c364d7f53f960cc8c5b ""
   "C:/Users/ASUS/AppData/Local/Programs/MiKTeX/tex/generic/babel/babel.sty" 1761147669 145885 784cdd1ebbc3dbacabd5ee30707617a3 ""
   "C:/Users/ASUS/AppData/Local/Programs/MiKTeX/tex/generic/babel/locale/en/babel-en.ini" 1761147672 3966 caeee5a9e5771d4446aa1ca9015ba1b2 ""
@@ -191,11 +192,11 @@
   "C:/Users/ASUS/AppData/Local/Programs/MiKTeX/tex/latex/wasysym/uwasy.fd" 1579693002 2296 c50bf1089c7a46a0d4e9a119e980be4e ""
   "C:/Users/ASUS/AppData/Local/Programs/MiKTeX/tex/latex/wasysym/wasysym.sty" 1579693002 11252 7fbfbe7bbcbe1f73acbe32ae2f10c666 ""
   "C:/Users/ASUS/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1729265222 55384 b454dec21c2d9f45ec0b793f0995b992 ""
-  "c:/Users/ASUS/Desktop/IITB/Projects/ME782_Design_Optimisation/Latex/main.tex" 1763221540 4267 4e40e9da21a6117a4ddf449b479a88d0 ""
-  "main.aux" 1763221543 893 1838a6a6f02a8282d3fc42d86206df3c "pdflatex"
-  "main.out" 1763221543 570 a6474ea62cb64f71eb0694f1838a703c "pdflatex"
-  "main.tex" 1763221540 4267 4e40e9da21a6117a4ddf449b479a88d0 ""
-  "main.toc" 1763221543 336 aa95492ef54c31ae7520471e7e55d0df "pdflatex"
+  "c:/Users/ASUS/Desktop/IITB/Projects/ME782_Design_Optimisation/Latex/main.tex" 1763234964 4693 19a7ad1c4adf7b2b772e5781408be7ef ""
+  "main.aux" 1763234966 893 11135af89f0e2f6ae03ee591cc1f5e3e "pdflatex"
+  "main.out" 1763234967 570 a6474ea62cb64f71eb0694f1838a703c "pdflatex"
+  "main.tex" 1763234964 4693 19a7ad1c4adf7b2b772e5781408be7ef ""
+  "main.toc" 1763234967 336 b4ed1905df6aa3c600be296de51b2ce3 "pdflatex"
   (generated)
   "main.aux"
   "main.log"

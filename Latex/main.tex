@@ -99,8 +99,13 @@ In modern engineering, the drive to create lightweight yet durable structures is
 A practical example of this concept can be seen in bicycle frame design. A solid metal block could easily withstand loads but would be unnecessarily heavy. Instead, engineers design frames with hollow tubes, placing material only along paths where forces travel between the pedals, seat, and wheels. These tubes form an efficient skeleton that provides stiffness and strength while keeping the frame lightweight. Similarly, in this project, topology optimisation will be applied to a 2D rectangular structure to identify regions that do not significantly contribute to load-bearing. By removing redundant material and maintaining essential load paths, the resulting structure will exhibit high strength-to-weight efficiency — much like the optimized form of a modern bicycle frame.
 
 \section{Governing Equations}
-We wish to find: 
+Define the optimisation variable:\\
+\begin{equation}
+    x_e \in [0,1] \quad \forall e = 1,2,...,N
+\end{equation}
+Since, we want to make a strong and stiff structure with minimal deformations under loading, we wish to minimise the compliance of the structure given a volume constraint. The optimisation problem can be stated as:\\ 
 \begin{equation}
    \min_{X} \quad C(x) = F^T U(x)
 \end{equation}
+where, C is compliance, F is the force vector, U is the displacement vector and x is the density vector.\\
 \end{document}
