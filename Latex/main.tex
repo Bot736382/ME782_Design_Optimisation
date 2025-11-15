@@ -1,0 +1,106 @@
+\documentclass[12pt,english]{report}
+
+% Encoding and Font
+\usepackage[T1]{fontenc}
+
+% Geometry (Margins)
+\usepackage[top=2cm, bottom=2.5cm, left=1cm, right=1cm]{geometry}
+\geometry{verbose}
+
+% Math Packages
+\usepackage{amsmath, amstext, amsfonts}
+
+% Colors and Highlighting
+\usepackage[dvipsnames]{xcolor}  
+\definecolor{DGreen}{RGB}{0,100,20}    
+\usepackage{soul} % Highlighting
+
+% Figures and Graphics
+\usepackage{graphicx, float, subcaption}
+
+% Code Formatting
+\usepackage{minted}
+\usepackage{listings}
+
+% Hyperlinks
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=cyan
+}
+\usepackage{cleveref}
+
+% TikZ for Diagrams
+\usepackage{tikz}   
+
+% Symbols
+\usepackage{wasysym}    
+
+% Language Support
+\usepackage{babel}      
+
+% Table Formatting
+\usepackage{array}      
+
+% Title and Author
+\title{
+    \textbf{{\Huge ME782 Project}}\\ 
+    \huge{Mechanical Engineering}
+}      
+\author{
+    \LARGE\sffamily \color{Blue} 
+    Manan Mehta(22b2129), Daksh Soni(22b2150)
+}
+\date{\vspace{2cm}}
+
+% Fancy Headers and Footers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{} % Clear default settings
+\renewcommand{\footrulewidth}{0.5pt}
+\chead{\leftmark} 
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\cfoot{\thepage}
+\lfoot{22b2129} 
+\rfoot{Honors}
+
+% Title Formatting
+\usepackage[explicit]{titlesec}
+
+\titleformat{\chapter}[display]
+{\normalfont\huge\bfseries}{\chaptertitlename\ \thechapter}{20pt}{\Huge #1}
+
+\titleformat{\chapter}[display]
+{\normalfont\huge\bfseries}{}{0pt}{\Huge #1}
+
+% \titleformat{\section}
+% {\normalfont\large\bfseries}{}{1em}{#1}
+
+% Custom Commands
+\newcommand{\var}{\text{Var}}
+\newcommand{\cov}{\text{Cov}}
+\newcommand{\cor}{\text{Cor}}
+\renewcommand{\c}[1]{\texttt{#1}} % Modify existing command
+
+% \renewcommand{\thesection}{\arabic{section}}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+\chapter{Defining the Problem}
+\section{The Problem Statement}
+This project will use topology optimisation to identify and remove redundant material from a 2D rectangular structure, significantly reducing its weight while maintaining structural integrity under various loads. The concept is analogous to designing a bicycle frame; instead of using a solid block of metal, material is placed only where it is needed to effectively distribute loads and enhance strength. Our approach will determine which regions within the rectangle can be eliminated without compromising its ability to withstand applied forces, leading to a highly efficient and lightweight design.
+
+\section{Background}
+In modern engineering, the drive to create lightweight yet durable structures is essential, especially in fields such as aerospace, automotive, and cycling. Reducing material usage without sacrificing strength leads to better performance, lower costs, and improved energy efficiency. Traditional design approaches often depend on experience or trial and error, which can leave unnecessary material in the structure. Topology optimisation, however, provides a scientific and computational method to achieve material efficiency. It systematically determines where material should be retained and where it can be removed, based on how loads and stresses flow through the structure.\\
+\\
+A practical example of this concept can be seen in bicycle frame design. A solid metal block could easily withstand loads but would be unnecessarily heavy. Instead, engineers design frames with hollow tubes, placing material only along paths where forces travel between the pedals, seat, and wheels. These tubes form an efficient skeleton that provides stiffness and strength while keeping the frame lightweight. Similarly, in this project, topology optimisation will be applied to a 2D rectangular structure to identify regions that do not significantly contribute to load-bearing. By removing redundant material and maintaining essential load paths, the resulting structure will exhibit high strength-to-weight efficiency — much like the optimized form of a modern bicycle frame.
+
+\section{Governing Equations}
+We wish to find: 
+\begin{equation}
+   \min_{X} \quad C(x) = F^T U(x)
+\end{equation}
+\end{document}
