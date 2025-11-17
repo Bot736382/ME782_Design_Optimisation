@@ -96,16 +96,32 @@ This project will use topology optimisation to identify and remove redundant mat
 \section{Background}
 In modern engineering, the drive to create lightweight yet durable structures is essential, especially in fields such as aerospace, automotive, and cycling. Reducing material usage without sacrificing strength leads to better performance, lower costs, and improved energy efficiency. Traditional design approaches often depend on experience or trial and error, which can leave unnecessary material in the structure. Topology optimisation, however, provides a scientific and computational method to achieve material efficiency. It systematically determines where material should be retained and where it can be removed, based on how loads and stresses flow through the structure.\\
 \\
-A practical example of this concept can be seen in bicycle frame design. A solid metal block could easily withstand loads but would be unnecessarily heavy. Instead, engineers design frames with hollow tubes, placing material only along paths where forces travel between the pedals, seat, and wheels. These tubes form an efficient skeleton that provides stiffness and strength while keeping the frame lightweight. Similarly, in this project, topology optimisation will be applied to a 2D rectangular structure to identify regions that do not significantly contribute to load-bearing. By removing redundant material and maintaining essential load paths, the resulting structure will exhibit high strength-to-weight efficiency — much like the optimized form of a modern bicycle frame.
-
+A practical example of this concept can be seen in bicycle frame design. A solid metal block could easily withstand loads but would be unnecessarily heavy. Instead, engineers design frames with hollow tubes, placing material only along paths where forces travel between the pedals, seat, and wheels. These tubes form an efficient skeleton that provides stiffness and strength while keeping the frame lightweight. Similarly, in this project, topology optimisation will be applied to a 2D rectangular structure to identify regions that do not significantly contribute to load-bearing. By removing redundant material and maintaining essential load paths, the resulting structure will exhibit high strength-to-weight efficiency — much like the optimized form of a modern bicycle frame. To solve this problem, we'll look into Solid Isotropic Material with Penalisation techniques for removal of material.\\
+\\
+The Solid Isotropic Material with Penalisation (SIMP) method is a widely used approach in topology optimisation to determine the optimal material distribution within a given design domain. The core idea of SIMP is to represent the material properties of each finite element in the structure using a density variable, which can vary continuously between 0 (void) and 1 (solid material). This allows for a smooth transition between material and void, enabling the optimisation algorithm to explore a wide range of design possibilities.
 \section{Governing Equations}
-Define the optimisation variable:\\
-\begin{equation}
-    x_e \in [0,1] \quad \forall e = 1,2,...,N
-\end{equation}
-Since, we want to make a strong and stiff structure with minimal deformations under loading, we wish to minimise the compliance of the structure given a volume constraint. The optimisation problem can be stated as:\\ 
-\begin{equation}
-   \min_{X} \quad C(x) = F^T U(x)
-\end{equation}
-where, C is compliance, F is the force vector, U is the displacement vector and x is the density vector.\\
+To solve the topology optimisation problem, we will use the Solid Isotropic Material with Penalisation (SIMP) method. The structure will be discretised into N finite elements. Each element will have a density variable $x_e$ that can take values between 0 and 1, where 0 represents void (no material) and 1 represents solid material.\\
+% Define the optimisation variable:\\
+% \begin{equation}
+%     x_e \in [0,1] \quad \forall e = 1,2,...,N
+% \end{equation}
+% Since, we want to make a strong and stiff structure with minimal deformations under loading, we wish to minimise the compliance of the structure given a volume constraint. The optimisation problem can be stated as:\\ 
+% \begin{equation}
+%    \min_{X} \quad C(x) = F^T U(x)
+% \end{equation}
+% Where, C is compliance, F is the force vector, U is the displacement vector and x is the density vector.\\
+% We also have a volume constraint given by:\\
+% \begin{equation}
+%     \frac{V(x)}{V_0} = \frac{\sum_{e=1}^{N} x_e v_e}{V_0} \leq V^*
+% \end{equation}
+% Where, V(x) is the volume of the structure after optimisation, V0 is the initial volume of the structure, ve is the volume of each element and V* is the maximum allowed volume fraction.\\
+% The global stiffness matrix of the structure is given by:
+% \begin{equation}
+%     K(x) = \sum_{e=1}^{N} x_e^p k_0
+% \end{equation}
+% Where, k0 is the stiffness matrix of each element and p is the penalisation factor.\\
+% The displacement vector can be obtained by solving the following equation:
+% \begin{equation}
+%     K(x) U(x) = F
+% \end{equation}
 \end{document}
