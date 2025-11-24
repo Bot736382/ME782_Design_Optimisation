@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.11.14)  16 NOV 2025 02:51
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.11.24)  24 NOV 2025 14:11
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -797,47 +797,43 @@ File: l3backend-pdftex.def 2025-10-09 L3 backend support: PDF output (pdfTeX)
 ) (main.aux)
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 88.
-LaTeX Font Info:    ... okay on input line 88.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 88.
-LaTeX Font Info:    ... okay on input line 88.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 88.
-LaTeX Font Info:    ... okay on input line 88.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 88.
-LaTeX Font Info:    ... okay on input line 88.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 88.
-LaTeX Font Info:    ... okay on input line 88.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 88.
-LaTeX Font Info:    ... okay on input line 88.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 88.
-LaTeX Font Info:    ... okay on input line 88.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 88.
-LaTeX Font Info:    ... okay on input line 88.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 88.
-LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 90.
+LaTeX Font Info:    ... okay on input line 90.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
-
-Package geometry Warning: The marginal notes overrun the paper.
-     Add 25.54726pt and more to the right margin.
-
 *geometry* verbose mode - [ preamble ] result:
 * driver: pdftex
 * paper: <default>
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
 * modes: 
-* h-part:(L,W,R)=(28.45274pt, 557.38951pt, 28.45274pt)
+* h-part:(L,W,R)=(56.9055pt, 500.484pt, 56.9055pt)
 * v-part:(T,H,B)=(56.9055pt, 666.9326pt, 71.13188pt)
 * \paperwidth=614.295pt
 * \paperheight=794.96999pt
-* \textwidth=557.38951pt
+* \textwidth=500.484pt
 * \textheight=666.9326pt
-* \oddsidemargin=-43.81725pt
-* \evensidemargin=-43.81725pt
+* \oddsidemargin=-15.36449pt
+* \evensidemargin=-15.36449pt
 * \topmargin=-52.36449pt
-* \headheight=12.0pt
+* \headheight=14.5pt
 * \headsep=25.0pt
 * \topskip=12.0pt
 * \footskip=30.0pt
@@ -884,25 +880,30 @@ Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \c@lstlisting=\count385
-Package hyperref Info: Link coloring ON on input line 88.
+Package hyperref Info: Link coloring ON on input line 90.
  (main.out) (main.out)
 \@outlinefile=\write5
 \openout5 = `main.out'.
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 90.
+<iitblogo.png, id=110, 224.84pt x 224.84pt>
+File: iitblogo.png Graphic file (type png)
+<use iitblogo.png>
+Package pdftex.def Info: iitblogo.png  used on input line 92.
+(pdftex.def)             Requested size: 284.52756pt x 284.55899pt.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 92.
  (C:\Users\ASUS\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 90.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 92.
  (C:\Users\ASUS\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+wasy on input line 90.
+LaTeX Font Info:    Trying to load font information for U+wasy on input line 92.
  (C:\Users\ASUS\AppData\Local\Programs\MiKTeX\tex/latex/wasysym\uwasy.fd
 File: uwasy.fd 2020/01/19 v2.4 Wasy-2 symbol font definitions
 ) [1
 
-{C:/Users/ASUS/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}] (main.toc)
+{C:/Users/ASUS/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map} <./iitblogo.png>] (main.toc)
 \tf@toc=\write6
 \openout6 = `main.toc'.
 
@@ -910,58 +911,155 @@ File: uwasy.fd 2020/01/19 v2.4 Wasy-2 symbol font definitions
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.91 \newpage
+l.93 \newpage
               [1
 
 ]
 Chapter 1.
 
-Underfull \hbox (badness 10000) in paragraph at lines 97--102
+LaTeX Warning: Citation `Wang2022' on page 2 undefined on input line 103.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 99--104
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 97--102
+Underfull \hbox (badness 10000) in paragraph at lines 99--104
 
  []
 
 [2
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 103--127
+Underfull \hbox (badness 10000) in paragraph at lines 105--129
+
+ []
+
+[3] [4]
+Chapter 2.
+[5
+
+] [6] [7] [8]
+Chapter 3.
+<images/topology_iter_2_0.png, id=203, 492.3996pt x 476.5002pt>
+File: images/topology_iter_2_0.png Graphic file (type png)
+<use images/topology_iter_2_0.png>
+Package pdftex.def Info: images/topology_iter_2_0.png  used on input line 358.
+(pdftex.def)             Requested size: 90.08345pt x 87.16959pt.
+<images/topology_iter_2_12.png, id=205, 492.3996pt x 476.5002pt>
+File: images/topology_iter_2_12.png Graphic file (type png)
+<use images/topology_iter_2_12.png>
+Package pdftex.def Info: images/topology_iter_2_12.png  used on input line 365.
+(pdftex.def)             Requested size: 90.08345pt x 87.16959pt.
+<images/topology_iter_2_24.png, id=206, 492.3996pt x 476.5002pt>
+File: images/topology_iter_2_24.png Graphic file (type png)
+<use images/topology_iter_2_24.png>
+Package pdftex.def Info: images/topology_iter_2_24.png  used on input line 372.
+(pdftex.def)             Requested size: 90.08345pt x 87.16959pt.
+<images/topology_iter_2_36.png, id=207, 492.3996pt x 476.5002pt>
+File: images/topology_iter_2_36.png Graphic file (type png)
+<use images/topology_iter_2_36.png>
+Package pdftex.def Info: images/topology_iter_2_36.png  used on input line 379.
+(pdftex.def)             Requested size: 90.08345pt x 87.16959pt.
+<images/topology_iter_2_49.png, id=208, 492.3996pt x 476.5002pt>
+File: images/topology_iter_2_49.png Graphic file (type png)
+<use images/topology_iter_2_49.png>
+Package pdftex.def Info: images/topology_iter_2_49.png  used on input line 386.
+(pdftex.def)             Requested size: 90.08345pt x 87.16959pt.
+<images/topology_iter_1_0.png, id=209, 463.0098pt x 476.5002pt>
+File: images/topology_iter_1_0.png Graphic file (type png)
+<use images/topology_iter_1_0.png>
+Package pdftex.def Info: images/topology_iter_1_0.png  used on input line 401.
+(pdftex.def)             Requested size: 90.08345pt x 92.70267pt.
+<images/topology_iter_1_12.png, id=210, 463.0098pt x 476.5002pt>
+File: images/topology_iter_1_12.png Graphic file (type png)
+<use images/topology_iter_1_12.png>
+Package pdftex.def Info: images/topology_iter_1_12.png  used on input line 408.
+(pdftex.def)             Requested size: 90.08345pt x 92.70267pt.
+<images/topology_iter_1_24.png, id=211, 463.0098pt x 476.5002pt>
+File: images/topology_iter_1_24.png Graphic file (type png)
+<use images/topology_iter_1_24.png>
+Package pdftex.def Info: images/topology_iter_1_24.png  used on input line 415.
+(pdftex.def)             Requested size: 90.08345pt x 92.70267pt.
+<images/topology_iter_1_36.png, id=212, 463.0098pt x 476.5002pt>
+File: images/topology_iter_1_36.png Graphic file (type png)
+<use images/topology_iter_1_36.png>
+Package pdftex.def Info: images/topology_iter_1_36.png  used on input line 422.
+(pdftex.def)             Requested size: 90.08345pt x 92.70267pt.
+<images/topology_iter_1_49.png, id=213, 463.0098pt x 476.5002pt>
+File: images/topology_iter_1_49.png Graphic file (type png)
+<use images/topology_iter_1_49.png>
+Package pdftex.def Info: images/topology_iter_1_49.png  used on input line 429.
+(pdftex.def)             Requested size: 90.08345pt x 92.70267pt.
+<images/topology_iter_3_0.png, id=214, 463.0098pt x 476.5002pt>
+File: images/topology_iter_3_0.png Graphic file (type png)
+<use images/topology_iter_3_0.png>
+Package pdftex.def Info: images/topology_iter_3_0.png  used on input line 442.
+(pdftex.def)             Requested size: 90.08345pt x 92.70267pt.
+<images/topology_iter_3_12.png, id=215, 463.0098pt x 476.5002pt>
+File: images/topology_iter_3_12.png Graphic file (type png)
+<use images/topology_iter_3_12.png>
+Package pdftex.def Info: images/topology_iter_3_12.png  used on input line 449.
+(pdftex.def)             Requested size: 90.08345pt x 92.70267pt.
+<images/topology_iter_3_24.png, id=216, 463.0098pt x 476.5002pt>
+File: images/topology_iter_3_24.png Graphic file (type png)
+<use images/topology_iter_3_24.png>
+Package pdftex.def Info: images/topology_iter_3_24.png  used on input line 456.
+(pdftex.def)             Requested size: 90.08345pt x 92.70267pt.
+<images/topology_iter_3_36.png, id=217, 463.0098pt x 476.5002pt>
+File: images/topology_iter_3_36.png Graphic file (type png)
+<use images/topology_iter_3_36.png>
+Package pdftex.def Info: images/topology_iter_3_36.png  used on input line 463.
+(pdftex.def)             Requested size: 90.08345pt x 92.70267pt.
+<images/topology_iter_3_49.png, id=218, 463.0098pt x 476.5002pt>
+File: images/topology_iter_3_49.png Graphic file (type png)
+<use images/topology_iter_3_49.png>
+Package pdftex.def Info: images/topology_iter_3_49.png  used on input line 470.
+(pdftex.def)             Requested size: 90.08345pt x 92.70267pt.
+[9
+
+ <./images/topology_iter_2_0.png> <./images/topology_iter_2_12.png> <./images/topology_iter_2_24.png> <./images/topology_iter_2_36.png> <./images/topology_iter_2_49.png> <./images/topology_iter_1_0.png> <./images/topology_iter_1_12.png> <./images/topology_iter_1_24.png> <./images/topology_iter_1_36.png> <./images/topology_iter_1_49.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 478--483
 
  []
 
 
-Package fancyhdr Warning: \headheight is too small (12.0pt): 
-(fancyhdr)                Make it at least 14.49998pt, for example:
-(fancyhdr)                \setlength{\headheight}{14.49998pt}.
-(fancyhdr)                You might also make \topmargin smaller:
-(fancyhdr)                \addtolength{\topmargin}{-2.49998pt}.
+Underfull \hbox (badness 10000) in paragraph at lines 478--483
 
-[3]
-runsystem(latexminted cleantemp  --timestamp 20251116025146 FAD58DE7366495DB4650CFEFAC2FCD61)...disabled (restricted).
+ []
+
+[10 <./images/topology_iter_3_0.png> <./images/topology_iter_3_12.png> <./images/topology_iter_3_24.png> <./images/topology_iter_3_36.png> <./images/topology_iter_3_49.png>]
+Chapter 4.
+[11
+
+]
+runsystem(latexminted cleantemp  --timestamp 20251124141108 FAD58DE7366495DB4650CFEFAC2FCD61)...disabled (restricted).
 
  (main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-10-24>
  ***********
+
+
+LaTeX Warning: There were undefined references.
+
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: A6474EA62CB64F71EB0694F1838A703C;570.
+(rerunfilecheck)             Checksum: FFC97056558D7EA274AB242C94362A37;4532.
  ) 
 Here is how much of TeX's memory you used:
- 30953 strings out of 467871
- 614243 string characters out of 5418859
- 1122754 words of memory out of 5000000
- 59368 multiletter control sequences out of 15000+600000
- 644315 words of font info for 86 fonts, out of 8000000 for 9000
+ 31182 strings out of 467871
+ 619973 string characters out of 5418859
+ 1125788 words of memory out of 5000000
+ 59548 multiletter control sequences out of 15000+600000
+ 648336 words of font info for 93 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 85i,11n,94p,996b,526s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\ASUS\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1728.pk> <C:\Users\ASUS\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:\Users\ASUS\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\ASUS\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecss2074.pk> <C:\Users\ASUS\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm2488.pk> <C:\Users\ASUS\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2488.pk><C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb>
-Output written on main.pdf (4 pages, 88550 bytes).
+ 85i,12n,94p,1159b,694s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ <C:\Users\ASUS\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1095.pk> <C:\Users\ASUS\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tctt1200.pk> <C:\Users\ASUS\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1200.pk> <C:\Users\ASUS\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1440.pk> <C:\Users\ASUS\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1200.pk> <C:\Users\ASUS\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1728.pk> <C:\Users\ASUS\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:\Users\ASUS\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx1200.pk> <C:\Users\ASUS\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecss2074.pk> <C:\Users\ASUS\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm2488.pk> <C:\Users\ASUS\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecbx2488.pk><C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/ASUS/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
+Output written on main.pdf (12 pages, 738742 bytes).
 PDF statistics:
- 240 PDF objects out of 1000 (max. 8388607)
- 9 named destinations out of 1000 (max. 500000)
- 45 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 667 PDF objects out of 1000 (max. 8388607)
+ 51 named destinations out of 1000 (max. 500000)
+ 301 words of extra memory for PDF output out of 10000 (max. 10000000)
 

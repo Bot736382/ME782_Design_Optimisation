@@ -164,6 +164,7 @@ class TopologyOptimizer:
         plt.pause(0.1)
 
         # Main Loop
+        save_iterations = [0, 12, 24, 36, 49]
         for loop in range(max_loop):
             u, edofMat = self.FE_analysis()
             
@@ -188,6 +189,48 @@ class TopologyOptimizer:
             fig.canvas.draw()
             fig.canvas.flush_events()
             plt.pause(0.01)
+            
+            # Save snapshots at specified iterations
+            if loop in save_iterations:
+                fig_snap, ax_snap = plt.subplots(figsize=(10, 10))
+                ax_snap.imshow(-self.xPhys.reshape((self.nelx, self.nely)).T, 
+                               cmap='gray', interpolation='none', 
+                               vmin=-1, vmax=0, origin='lower')
+                
+                # Add supports (red triangles)
+                fixed_x_coords = []
+                fixed_y_coords = []
+                for dof in self.fixed_dofs:
+                    node_idx = dof // 2
+                    x_coord = node_idx // (self.nely + 1)
+                    y_coord = node_idx % (self.nely + 1)
+                    fixed_x_coords.append(x_coord - 0.5)
+                    fixed_y_coords.append(y_coord - 0.5)
+                
+                ax_snap.scatter(fixed_x_coords, fixed_y_coords, c='red', marker='^', s=50, label='Fixed Support', zorder=5)
+                
+                # Add forces (blue arrows)
+                scale = 10.0
+                for i in range(0, self.ndof, 2):
+                    fx = self.force_vector[i]
+                    fy = self.force_vector[i+1]
+                    if fx != 0 or fy != 0:
+                        node_idx = i // 2
+                        x_coord = node_idx // (self.nely + 1)
+                        y_coord = node_idx % (self.nely + 1)
+                        ax_snap.arrow(x_coord - 0.5, y_coord - 0.5, fx * scale, fy * scale, 
+                                     head_width=2, head_length=2, fc='blue', ec='blue', zorder=10)
+                        label_text = f"Fx:{fx:.1f}\nFy:{fy:.1f}" if fx!=0 and fy!=0 else (f"Fx:{fx:.1f}" if fx!=0 else f"Fy:{fy:.1f}")
+                        ax_snap.text(x_coord + fx*scale, y_coord + fy*scale, label_text, color='blue', fontweight='bold', fontsize=8)
+                
+                ax_snap.set_title(f"Topology at Iteration {loop}", fontsize=14)
+                ax_snap.set_xlabel("X")
+                ax_snap.set_ylabel("Y")
+                ax_snap.legend(loc='upper right')
+                filename = f"topology_iter_3_{loop}.png"
+                fig_snap.savefig(filename, dpi=150, bbox_inches='tight')
+                print(f"Saved {filename}")
+                plt.close(fig_snap)
 
         plt.ioff()
         plt.show()
@@ -225,11 +268,11 @@ if __name__ == "__main__":
     # You can call set_load() as many times as you like. Forces at the same node will add up.
     
     # 1. Main Load: Downward force at Top-Middle (Your request)
-    opt.set_load(x=60, y=60, fx=0, fy=-1.0)
+    opt.set_load(x=0, y=100, fx=2.0, fy=-1.0)
     
     # 2. Secondary Load: Side push at the Top-Right (Demonstration)
     # This simulates a complex loading scenario
-    opt.set_load(x=30, y=30, fx=-1, fy=1) 
+    # opt.set_load(x=30, y=30, fx=-1, fy=1) 
 
     # Run optimization
-    opt.optimize(max_loop=50)
+    opt.optimize(max_loop=500)

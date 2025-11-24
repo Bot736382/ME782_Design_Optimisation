@@ -4,7 +4,7 @@
 \usepackage[T1]{fontenc}
 
 % Geometry (Margins)
-\usepackage[top=2cm, bottom=2.5cm, left=1cm, right=1cm]{geometry}
+\usepackage[top=2cm, bottom=2.5cm, left=2cm, right=2cm]{geometry}
 \geometry{verbose}
 
 % Math Packages
@@ -45,6 +45,7 @@
 
 % Title and Author
 \title{
+    \includegraphics[width=10cm]{iitblogo.png}\\
     \textbf{{\Huge ME782 Project}}\\ 
     \huge{Mechanical Engineering}
 }      
@@ -56,14 +57,15 @@
 
 % Fancy Headers and Footers
 \usepackage{fancyhdr}
+\setlength{\headheight}{14.5pt}
 \pagestyle{fancy}
 \fancyhf{} % Clear default settings
 \renewcommand{\footrulewidth}{0.5pt}
 \chead{\leftmark} 
 \renewcommand{\chaptermark}[1]{\markboth{#1}{}}
 \cfoot{\thepage}
-\lfoot{22b2129} 
-\rfoot{Honors}
+\lfoot{22b2129, 22b2150} 
+\rfoot{ME782}
 
 % Title Formatting
 \usepackage[explicit]{titlesec}
@@ -98,7 +100,7 @@ In modern engineering, the drive to create lightweight yet durable structures is
 \\
 A practical example of this concept can be seen in bicycle frame design. A solid metal block could easily withstand loads but would be unnecessarily heavy. Instead, engineers design frames with hollow tubes, placing material only along paths where forces travel between the pedals, seat, and wheels. These tubes form an efficient skeleton that provides stiffness and strength while keeping the frame lightweight. Similarly, in this project, topology optimisation will be applied to a 2D rectangular structure to identify regions that do not significantly contribute to load-bearing. By removing redundant material and maintaining essential load paths, the resulting structure will exhibit high strength-to-weight efficiency — much like the optimized form of a modern bicycle frame. To solve this problem, we'll look into Solid Isotropic Material with Penalisation techniques for removal of material.\\
 \\
-The Solid Isotropic Material with Penalisation (SIMP) method is a widely used approach in topology optimisation to determine the optimal material distribution within a given design domain. The core idea of SIMP is to represent the material properties of each finite element in the structure using a density variable, which can vary continuously between 0 (void) and 1 (solid material). This allows for a smooth transition between material and void, enabling the optimisation algorithm to explore a wide range of design possibilities.
+The Solid Isotropic Material with Penalisation (SIMP) method is a widely used approach in topology optimisation to determine the optimal material distribution within a given design domain \cite{Wang2022}. The core idea of SIMP is to represent the material properties of each finite element in the structure using a density variable, which can vary continuously between 0 (void) and 1 (solid material). This allows for a smooth transition between material and void, enabling the optimisation algorithm to explore a wide range of design possibilities.
 \section{Governing Equations}
 To solve the topology optimisation problem, we will use the Solid Isotropic Material with Penalisation (SIMP) method. The structure will be discretised into N finite elements. Each element will have a density variable $x_e$ that can take values between 0 and 1, where 0 represents void (no material) and 1 represents solid material.\\
 % Define the optimisation variable:\\
@@ -124,4 +126,371 @@ To solve the topology optimisation problem, we will use the Solid Isotropic Mate
 % \begin{equation}
 %     K(x) U(x) = F
 % \end{equation}
+
+The domain consists of a rectangular grid of $nelx \times nely$ Q4 finite elements. Each element has an associated density variable $x_e \in [0,1]$.
+
+The structure is subjected to:
+\begin{itemize}
+    \item Distributed supports (bottom edge fixed),
+    \item Multiple external point loads at arbitrary nodes.
+\end{itemize}
+
+\subsection{Design Variables}
+Each finite element has a design variable:
+\[
+x_e \in [0,1], \qquad e = 1,\dots, nelx \times nely
+\]
+
+\subsection{Objective Function}
+Compliance is computed using the FE displacement field $u$:
+\[
+C = \sum_{e} x_e^{p} \, u_e^T K_0 u_e
+\]
+where:
+\begin{itemize}
+    \item $p$ = penalization factor,
+    \item $K_0$ = element stiffness matrix,
+    \item $u_e$ = displacement vector of element $e$.
+\end{itemize}
+
+\subsection{Optimization Problem}
+\[
+\begin{aligned}
+&\min_{x} \quad C(x) \\
+&\text{s.t.} \quad \frac{1}{N}\sum_e x_e = V^* \\
+&0.001 \le x_e \le 1
+\end{aligned}
+\]
+
+\subsection{Constraints}
+\begin{itemize}
+    \item Maximum allowed material volume $V^*$,
+    \item Fixed displacement boundary conditions,
+    \item Multiple external loads,
+    \item Filtering radius $r_{min}$ for density smoothing.
+\end{itemize}
+
+\subsection{Assumptions}
+\begin{itemize}
+    \item Linear elasticity,
+    \item Small displacements,
+    \item Isotropic materials,
+    \item Constant Young's modulus $E=1$, Poisson ratio $\nu=0.3$.
+\end{itemize}
+
+% -----------------------------------------------------
+\chapter{Methodology}
+% -----------------------------------------------------
+
+\section{Algorithm Overview}
+The implemented procedure consists of:
+\begin{enumerate}
+    \item Initialization of density field,
+    \item Construction of Q4 FE stiffness matrix,
+    \item Assembly of global FE system,
+    \item Application of boundary conditions,
+    \item FE analysis using sparse solvers,
+    \item Sensitivity computation,
+    \item Density filtering,
+    \item OC density update,
+    \item Visualization of load/support locations and density evolution.
+\end{enumerate}
+
+\section{Filtering}
+A density filter is used to remove checkerboard patterns:
+\[
+\tilde{d}_e = \frac{\sum_{i \in N_e} H_{ei} x_i d_i}{\sum_{i \in N_e} H_{ei}}
+\]
+
+\section{Optimality Criteria Update}
+The OC method updates densities with:
+\[
+x_e^{new} = \max\big(0.001, \max(x_e - m, \min(1, \min(x_e + m, x_e \sqrt{-\frac{\partial C/\partial x_e}{\lambda}} )))\big)
+\]
+
+\section{Detailed Algorithmic Implementation}
+
+The topology optimization code in our project directly follows the classical SIMP methodology but implements every component manually using NumPy and SciPy. In this section, we explain how each algorithmic step is achieved inside the Python implementation.
+
+\subsection{Initialization of the Density Field}
+The optimizer is initialized with a uniform material distribution:
+\[
+x_e = \text{volfrac}, \qquad \forall e
+\]
+In the code, this is:
+\begin{verbatim}
+self.x = np.ones(nely * nelx) * volfrac
+self.xPhys = self.x.copy()
+\end{verbatim}
+This sets every element in the domain to the same initial density.
+
+\subsection{Construction of the Q4 Element Stiffness Matrix}
+The Q4 isoparametric element stiffness matrix $K_e$ is computed once in the constructor using analytical expressions:
+\begin{verbatim}
+k = np.array([1/2-nu/6, 1/8+nu/8, ... ])
+self.KE = E/(1-nu**2) * np.array([...])
+\end{verbatim}
+This $8 \times 8$ matrix corresponds to standard bilinear quadrilateral elasticity.
+
+\subsection{Assembly of the Global FE System}
+For each element the global degrees of freedom are computed using an \texttt{edofMat} array:
+\begin{verbatim}
+edofMat[el, :] = np.array([2*n1+2, 2*n1+3, ..., 2*n1+1])
+\end{verbatim}
+The global stiffness matrix $K$ is assembled using sparse COO storage:
+\begin{verbatim}
+iK = np.repeat(edofMat, 8).flatten()
+jK = np.tile(edofMat, (1,8)).flatten()
+sK = (self.KE.flatten() * xPhys**penal).flatten(order='F')
+K = sp.coo_matrix((sK, (iK, jK)))
+\end{verbatim}
+This implements:
+\[
+K = \sum_{e} x_e^p K_e
+\]
+
+\subsection{Application of Boundary Conditions}
+The user can add supports anywhere via:
+\begin{verbatim}
+self.fixed_dofs.append(2*node_idx)
+self.fixed_dofs.append(2*node_idx+1)
+\end{verbatim}
+All fixed DOFs are removed from the global solve:
+\begin{verbatim}
+free = np.setdiff1d(np.arange(self.ndof), fixed)
+u[free] = spsolve(K[free,:][:,free], F[free])
+\end{verbatim}
+
+\subsection{FE Analysis Using Sparse Solvers}
+The FE problem solves:
+\[
+K u = F
+\]
+with the sparse solver:
+\begin{verbatim}
+u[free] = scipy.sparse.linalg.spsolve(...)
+\end{verbatim}
+This ensures memory efficiency for the $20000 \times 20000$ stiffness matrix.
+
+\subsection{Sensitivity Analysis}
+The compliance contribution from each element is:
+\[
+c_e = u_e^T K_e u_e
+\]
+Implemented as:
+\begin{verbatim}
+ue = u[edofMat]
+ce = np.sum(np.dot(ue, self.KE) * ue, axis=1)
+\end{verbatim}
+The sensitivity is computed as:
+\[
+\frac{\partial C}{\partial x_e} = -p x_e^{p-1} c_e
+\]
+implemented via:
+\begin{verbatim}
+dc = -self.penal * (self.xPhys**(self.penal - 1)) * ce
+\end{verbatim}
+
+\subsection{Density Filtering}
+The filter matrix $H$ is assembled once in \texttt{\_prepare\_filter()}.
+Filtering applies:
+\[
+\tilde{d}_e = 
+\frac{ \sum_{i} H_{ei} \, x_i d_i }
+     { \sum_{i} H_{ei} }
+\]
+In code:
+\begin{verbatim}
+dc[:] = (H * (self.x * dc)) / Hs / np.maximum(0.001, self.x)
+\end{verbatim}
+
+This smoothing ensures well-behaved sensitivities and removes checkerboard patterns.
+
+\subsection{Optimality Criteria (OC) Density Update}
+The OC method solves the constrained optimization via a binary search on $\lambda$:
+\[
+x_e^{new} = 
+\max(0.001,\,
+\max(x_e - m, 
+\min(1, \min(x_e+m, x_e\sqrt{-dc_e / \lambda}))))
+\]
+In code:
+\begin{verbatim}
+xnew = max(0.001,
+           max(x - move, 
+               min(1, min(x + move, x * sqrt(-dc/lmid)))))
+\end{verbatim}
+The search loop continues until the volume constraint is satisfied:
+\begin{verbatim}
+if sum(xnew) > volfrac * nelx * nely:
+    l1 = lmid
+else:
+    l2 = lmid
+\end{verbatim}
+
+\subsection{Visualization and Plot Updates}
+The density field is reshaped and plotted each iteration:
+\begin{verbatim}
+im.set_data(-self.xPhys.reshape((nelx, nely)).T)
+\end{verbatim}
+Loads and supports are drawn via scatter plots and arrows:
+\begin{verbatim}
+ax.scatter(..., marker='^')      # supports
+ax.arrow(..., fx*scale, fy*scale) # loads
+\end{verbatim}
+Plots update dynamically using:
+\begin{verbatim}
+fig.canvas.draw()
+plt.pause(0.01)
+\end{verbatim}
+This produces real-time visualization of the evolving topology.
+
+\chapter{Results}
+The optimizer was run for 50 iterations with the following conditions:
+
+\section{Topology Evolution}
+The figure below shows the evolution of the optimized topology over selected iterations:
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.18\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/topology_iter_2_0.png}
+    \caption{Iteration 0}
+    % \label{fig:topo2_0}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.18\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/topology_iter_2_12.png}
+    \caption{Iteration 12}
+    % \label{fig:topo2_12}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.18\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/topology_iter_2_24.png}
+    \caption{Iteration 25}
+    % \label{fig:topo2_25}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.18\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/topology_iter_2_36.png}
+    \caption{Iteration 37}
+    % \label{fig:topo2_37}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.18\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/topology_iter_2_49.png}
+    \caption{Iteration 50}
+    % \label{fig:topo2_50}
+\end{subfigure}
+\caption{Topology optimization evolution showing material distribution across iterations. The dark regions represent retained material while light regions indicate removed material. The blue lines represent forces applied and red lines represent fixed loading for the structure}
+% \label{fig:topology_evolution_config2}
+\end{figure}
+
+For another configuration, the topology evolution is shown below:
+
+
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.18\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/topology_iter_1_0.png}
+    \caption{Iteration 0}
+    % \label{fig:topo_0}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.18\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/topology_iter_1_12.png}
+    \caption{Iteration 12}
+    % \label{fig:topo_12}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.18\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/topology_iter_1_24.png}
+    \caption{Iteration 25}
+    % \label{fig:topo_25}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.18\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/topology_iter_1_36.png}
+    \caption{Iteration 37}
+    % \label{fig:topo_37}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.18\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/topology_iter_1_49.png}
+    \caption{Iteration 50}
+    % \label{fig:topo_50}
+\end{subfigure}
+\caption{Topology optimization evolution showing material distribution across iterations. The dark regions represent retained material while light regions indicate removed material. The blue lines represent forces applied and red lines represent fixed loading for the structure}
+% \label{fig:topology_evolution}
+\end{figure}
+
+A different type of loading yields:
+\begin{figure}[H]
+\centering
+\begin{subfigure}[b]{0.18\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/topology_iter_3_0.png}
+    \caption{Iteration 0}
+    % \label{fig:topo_0}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.18\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/topology_iter_3_12.png}
+    \caption{Iteration 12}
+    % \label{fig:topo_12}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.18\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/topology_iter_3_24.png}
+    \caption{Iteration 25}
+    % \label{fig:topo_25}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.18\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/topology_iter_3_36.png}
+    \caption{Iteration 37}
+    % \label{fig:topo_37}
+\end{subfigure}
+\hfill
+\begin{subfigure}[b]{0.18\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{images/topology_iter_3_49.png}
+    \caption{Iteration 50}
+    % \label{fig:topo_50}
+\end{subfigure}
+\caption{Topology optimization evolution showing material distribution across iterations. The dark regions represent retained material while light regions indicate removed material. The blue lines represent forces applied and red lines represent fixed loading for the structure}
+\label{fig:topology_evolution}
+\end{figure}
+
+The figures illustrate the progression of topology optimization under different loading conditions across multiple iterations, beginning with a fully solid design domain and gradually evolving toward an optimized structural layout. As the algorithm proceeds, material is systematically removed from regions with low structural contribution, leaving dark areas that represent retained load-bearing material and lighter regions that indicate eliminated material; applied forces are shown by blue arrows and fixed boundaries by red lines.\\
+\\
+In each configuration, the design converges by approximately iteration 37–50 to an efficient truss-like structure aligned with the primary stress paths, effectively transferring loads between supports while minimizing compliance and material usage. Although the evolutionary trends are similar among scenarios, differences in loading and boundary conditions lead to distinct final geometries, demonstrating the adaptability of topology optimization to varying structural requirements.\\
+\\
+Overall, the results confirm the capability of topology optimization to generate lightweight and mechanically efficient structures by shaping material distribution according to stress flow. This highlights the strong relationship between boundary conditions, load paths, and optimal structural form.
+
+\chapter{Conclusions and References}
+Our project successfully demonstrates that topology optimization is a powerful approach for designing lightweight and mechanically efficient structures. By iteratively removing non-contributing material and aligning remaining regions with principal stress paths, the optimizer consistently converged to high-efficiency structural forms tailored to the imposed loading scenarios. The results validate the effectiveness of the SIMP method and optimality criteria update strategy in solving compliance-minimization problems, and highlight the strong dependency of optimal topology on boundary constraints and load locations. These findings reinforce the practicality of computational optimization tools in engineering design, offering systematic improvement over traditional intuition-based methods. Future work could expand to 3D domains, nonlinear materials, and multi-objective problems to further enhance applicability in real-world design applications. The 3d work could be used everywhere from designing drones to designing lightweight automotive components.
+\section*{Contributions}
+% \textbf{Summary}: Both authors contributed equally to the project with complementary expertise. Manan focused on the mathematical and finite element foundations, while Daksh focused on the optimization algorithm, numerical stability, and user interface. Collaborative efforts ensured consistent implementation quality and seamless integration of all components.
+\begin{itemize}
+    \item Manan Mehta (22b2129): SIMP formulation, FE assembly, equilibrium solver, sensitivity analysis, LaTeX documentation.
+        
+    \item Daksh Soni (22b2150): Optimization algorithm, density filtering, visualization, boundary conditions interface, project integration.
+\end{itemize}
+\section*{References}
+[1] Q. Wang, H. Han, C. Wang, et al. Topological control for 2d minimum compliance topology optimization
+using simp method. Structural and Multidisciplinary Optimization, 65(38):38, 2022.
 \end{document}
